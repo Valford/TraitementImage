@@ -18,7 +18,7 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
     int width = 0;
     int height = 0;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
