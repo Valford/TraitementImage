@@ -1,7 +1,9 @@
 package com.example.valentin.traitementimage;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,10 +16,20 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
 
     TextView photodimension;
     ImageView photo;
+    Bitmap bitmaphoto;
     boolean visibility = true;
-    int width = 0;
-    int height = 0;
-
+    int width;
+    int height;
+    double valred;
+    double valgreen;
+    double valblue;
+    int canalred;
+    int canalgreen;
+    int canalblue;
+    int canalalpha;
+    int maxwidth;
+    int maxheight;
+    int pixel;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,6 +48,7 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
         BitmapFactory.decodeResource(res, id, options);
         height = options.outHeight;
         width = options.outWidth;
+        photo.setImageBitmap(bitmaphoto);
 
         Button Buttonaff = (Button)findViewById(R.id.button);
         Buttonaff.setOnClickListener((View.OnClickListener)this);
@@ -56,10 +69,10 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
 
         if(visibility==true){
             if (view.getId() == R.id.button2) {
-                NiveauDeGris();
+                Greylevel(bitmaphoto);
             }
             if (view.getId() == R.id.button3){
-                Sepia();
+                Sepia(bitmaphoto);
             }
         }
 
@@ -79,12 +92,59 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    public void NiveauDeGris(){
+    public void Greylevel(Bitmap bitmaphoto){
+
+        valred = 0.3;
+        valgreen = 0.59;
+        valblue = 0.11;
+
+        for(int x=0; x<maxwidth; x++) {
+            for (int y = 0; y < maxheight; y++) {
+
+                pixel = bitmaphoto.getPixel(x, y);
+                canalalpha = Color.alpha(pixel);
+                canalred = (int) (Color.red(pixel) * valred);
+                canalgreen = (int) (Color.green(pixel) * valgreen);
+                canalblue = (int) (Color.blue(pixel) * valblue);
+                bitmaphoto.setPixel(x, y, Color.argb(canalalpha, canalred, canalgreen, canalblue));
+
+            }
+        }
 
     }
 
-    public void Sepia(){
+    public void Sepia(Bitmap bitmaphoto){
+
+        for(int x=0; x<maxwidth; x++) {
+            for (int y = 0; y < maxheight; y++) {
+
+                pixel = bitmaphoto.getPixel(x, y);
+                canalalpha = Color.alpha(pixel);
+
+                valred = 0.393;
+                valgreen = 0.769;
+                valblue = 0.189;
+                canalred = (int) Math.min(255, ((Color.red(pixel)*valred)+(Color.green(pixel)*valgreen)+(Color.blue(pixel)*valblue)));
+
+                valred = 0.349;
+                valgreen = 0.686;
+                valblue = 0.168;
+                canalred = (int) Math.min(255, ((Color.red(pixel)*valred)+(Color.green(pixel)*valgreen)+(Color.blue(pixel)*valblue)));
+
+                valred = 0.272;
+                valgreen = 0.534;
+                valblue = 0.131;
+                canalred = (int) Math.min(255, ((Color.red(pixel)*valred)+(Color.green(pixel)*valgreen)+(Color.blue(pixel)*valblue)));
+
+                canalgreen = (int) (Color.green(pixel) * valgreen);
+                canalblue = (int) (Color.blue(pixel) * valblue);
+                bitmaphoto.setPixel(x, y, Color.argb(canalalpha, canalred, canalgreen, canalblue));
+
+            }
+        }
 
     }
+
+
 
 }
