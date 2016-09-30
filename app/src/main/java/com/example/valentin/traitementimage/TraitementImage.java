@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -17,6 +18,7 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
     TextView photodimension;
     ImageView photo;
     Bitmap bitmaphoto;
+    Bitmap imaget;
     boolean visibility = true;
     int width;
     int height;
@@ -26,7 +28,7 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
     int canalred;
     int canalgreen;
     int canalblue;
-    int canalalpha;
+    int canalgrey;
     int maxwidth;
     int maxheight;
     int pixel;
@@ -37,9 +39,10 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_traitement_image);
 
         photo = (ImageView) findViewById(R.id.imageView);
-        hideShowPicture(photo);
 
         photodimension = (TextView) findViewById(R.id.textView);
+
+        hideShowPicture(photo);
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
@@ -48,7 +51,13 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
         BitmapFactory.decodeResource(res, id, options);
         height = options.outHeight;
         width = options.outWidth;
-        photo.setImageBitmap(bitmaphoto);
+
+        BitmapDrawable drawable = (BitmapDrawable) photo.getDrawable();
+        bitmaphoto = drawable.getBitmap();
+        imaget = bitmaphoto.copy(Bitmap.Config.ARGB_8888, true);
+
+        maxwidth = bitmaphoto.getWidth();
+        maxheight = bitmaphoto.getHeight();
 
         Button Buttonaff = (Button)findViewById(R.id.button);
         Buttonaff.setOnClickListener((View.OnClickListener)this);
@@ -58,6 +67,13 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
 
         Button Buttonsepia = (Button)findViewById(R.id.button3);
         Buttonsepia.setOnClickListener((View.OnClickListener)this);
+
+        Button Buttoncolorize = (Button)findViewById(R.id.button4);
+        Buttoncolorize.setOnClickListener((View.OnClickListener)this);
+
+        Button Buttonrestart = (Button)findViewById(R.id.button5);
+        Buttonrestart.setOnClickListener((View.OnClickListener)this);
+
     }
 
     public void onClick(View view) {
@@ -67,14 +83,24 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
             hideShowPicture(photo);
         }
 
+        if (view.getId() == R.id.button5) {
+
+        }
+
         if(visibility==true){
             if (view.getId() == R.id.button2) {
-                Greylevel(bitmaphoto);
+                Greylevel();
             }
             if (view.getId() == R.id.button3){
-                Sepia(bitmaphoto);
+                Sepia();
+            }
+
+            if (view.getId() == R.id.button4){
+                Colorize();
             }
         }
+
+
 
     }
 
@@ -92,34 +118,32 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    public void Greylevel(Bitmap bitmaphoto){
+    public void Greylevel(){
 
         valred = 0.3;
         valgreen = 0.59;
         valblue = 0.11;
 
-        for(int x=0; x<maxwidth; x++) {
-            for (int y = 0; y < maxheight; y++) {
+        for(int y=0; y<maxheight; y++) {
+            for (int x = 0; x < maxwidth; x++) {
 
                 pixel = bitmaphoto.getPixel(x, y);
-                canalalpha = Color.alpha(pixel);
-                canalred = (int) (Color.red(pixel) * valred);
-                canalgreen = (int) (Color.green(pixel) * valgreen);
-                canalblue = (int) (Color.blue(pixel) * valblue);
-                bitmaphoto.setPixel(x, y, Color.argb(canalalpha, canalred, canalgreen, canalblue));
+                canalgrey = (int) ((Color.red(pixel) * valred) + (Color.green(pixel) * valgreen) + (Color.blue(pixel) * valblue));
+                imaget.setPixel(x, y, Color.rgb(canalgrey, canalgrey, canalgrey));
 
             }
         }
 
+        photo.setImageBitmap(this.imaget);
+        photo.setVisibility(View.VISIBLE);
     }
 
-    public void Sepia(Bitmap bitmaphoto){
+    public void Sepia(){
 
-        for(int x=0; x<maxwidth; x++) {
-            for (int y = 0; y < maxheight; y++) {
+        for(int y=0; y<maxheight; y++) {
+            for (int x = 0; x < maxwidth; x++) {
 
-                pixel = bitmaphoto.getPixel(x, y);
-                canalalpha = Color.alpha(pixel);
+                pixel = imaget.getPixel(x, y);
 
                 valred = 0.393;
                 valgreen = 0.769;
@@ -129,22 +153,39 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
                 valred = 0.349;
                 valgreen = 0.686;
                 valblue = 0.168;
-                canalred = (int) Math.min(255, ((Color.red(pixel)*valred)+(Color.green(pixel)*valgreen)+(Color.blue(pixel)*valblue)));
+                canalgreen = (int) Math.min(255, ((Color.red(pixel)*valred)+(Color.green(pixel)*valgreen)+(Color.blue(pixel)*valblue)));
 
                 valred = 0.272;
                 valgreen = 0.534;
                 valblue = 0.131;
-                canalred = (int) Math.min(255, ((Color.red(pixel)*valred)+(Color.green(pixel)*valgreen)+(Color.blue(pixel)*valblue)));
+                canalblue = (int) Math.min(255, ((Color.red(pixel)*valred)+(Color.green(pixel)*valgreen)+(Color.blue(pixel)*valblue)));
 
-                canalgreen = (int) (Color.green(pixel) * valgreen);
-                canalblue = (int) (Color.blue(pixel) * valblue);
-                bitmaphoto.setPixel(x, y, Color.argb(canalalpha, canalred, canalgreen, canalblue));
+                imaget.setPixel(x, y, Color.rgb(canalred, canalgreen, canalblue));
 
             }
         }
 
+        photo.setImageBitmap(imaget);
+        photo.setVisibility(View.VISIBLE);
+
     }
 
+    public void Colorize() {
 
+        float hsv[] = new float[3];
 
+        for (int y = 0; y < maxheight; y++) {
+            for (int x = 0; x < maxwidth; x++) {
+
+                pixel = imaget.getPixel(x, y);
+                Color.RGBToHSV(Color.red(pixel), Color.green(pixel), Color.blue(pixel), hsv);
+                hsv[0] = 120;
+                Color.HSVToColor(hsv);
+            }
+        }
+
+        photo.setImageBitmap(imaget);
+        photo.setVisibility(View.VISIBLE);
+
+    }
 }
