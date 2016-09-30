@@ -82,11 +82,10 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
             photo = (ImageView)findViewById(R.id.imageView);
             hideShowPicture(photo);
         }
-
         if (view.getId() == R.id.button5) {
-
+            photo.setImageBitmap(this.bitmaphoto);
+            photo.setVisibility(View.VISIBLE);
         }
-
         if(visibility==true){
             if (view.getId() == R.id.button2) {
                 Greylevel();
@@ -94,14 +93,10 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
             if (view.getId() == R.id.button3){
                 Sepia();
             }
-
             if (view.getId() == R.id.button4){
                 Colorize();
             }
         }
-
-
-
     }
 
     public void hideShowPicture(ImageView photo){
@@ -177,10 +172,11 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
         for (int y = 0; y < maxheight; y++) {
             for (int x = 0; x < maxwidth; x++) {
 
-                pixel = imaget.getPixel(x, y);
+                pixel = bitmaphoto.getPixel(x, y);
                 Color.RGBToHSV(Color.red(pixel), Color.green(pixel), Color.blue(pixel), hsv);
                 hsv[0] = 120;
-                Color.HSVToColor(hsv);
+                pixel = Color.HSVToColor(hsv);
+                imaget.setPixel(x, y, pixel);
             }
         }
 
