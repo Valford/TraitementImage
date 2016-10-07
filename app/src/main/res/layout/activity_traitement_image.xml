@@ -47,14 +47,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:text="Sepia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:layout_above="@+id/button5"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,13 +56,23 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp" />
 
+    <Button
+        android:text="Sepia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/emma"
         android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:layout_above="@+id/button4"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button" />
 
 </RelativeLayout>

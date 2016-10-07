@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TraitementImage extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,11 +33,18 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
     int maxwidth;
     int maxheight;
     int pixel;
+    //String keyBundle;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_traitement_image);
+
+       /* if (savedInstanceState != null) {
+            // Restore value of members from saved state
+            Bundle bundle = savedInstanceState.getBundle(keyBundle);
+
+        }*/
 
         photo = (ImageView) findViewById(R.id.imageView);
 
@@ -86,6 +94,7 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
             photo.setImageBitmap(this.bitmaphoto);
             photo.setVisibility(View.VISIBLE);
         }
+
         if(visibility==true){
             if (view.getId() == R.id.button2) {
                 Greylevel();
@@ -97,7 +106,48 @@ public class TraitementImage extends AppCompatActivity implements View.OnClickLi
                 Colorize();
             }
         }
+
+
     }
+    /*
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(getApplicationContext(), "onStart called", Toast.LENGTH_LONG).show();
+    }
+
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        Toast.makeText(getApplicationContext(), "onResumed called", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    protected void onPause() {
+
+        super.onResume();
+        Toast.makeText(getApplicationContext(), "onPause called", Toast.LENGTH_LONG).show();
+
+    }
+    */
+
+  /*  @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putBundle(keyBundle, savedInstanceState);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state members from saved instance
+        mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
+
+    }*/
 
     public void hideShowPicture(ImageView photo){
 
