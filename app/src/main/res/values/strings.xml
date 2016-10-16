@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">TraitementImage</string>
+
+    <string name="traitement_prompt">Choisir Traitement</string>
+
+    <string-array name="Traitements">
+        <item>Original</item>
+        <item>Niveau de Gris</item>
+        <item>Sepia</item>
+        <item>Teinte Verte</item>
+        <item>Isoler Rouge</item>
+    </string-array>
+
 </resources>

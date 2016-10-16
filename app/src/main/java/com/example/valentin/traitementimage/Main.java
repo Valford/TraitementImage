@@ -3,16 +3,20 @@ package com.example.valentin.traitementimage;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-public class Main extends AppCompatActivity implements View.OnClickListener {
+public class Main extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     TextView sizePicture;
     ImageView picture;
     ImageState pictureState;
     ImageProcessing traitement;
+    Spinner spinner;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -25,22 +29,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         this.traitement = new ImageProcessing(this.picture);
         this.pictureState = new ImageState(this);
         ImageState.hideShowPicture(picture, sizePicture);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
+        spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
         Button Buttonaff = (Button)findViewById(R.id.button);
         Buttonaff.setOnClickListener((View.OnClickListener)this);
-
-        Button Buttongrey = (Button)findViewById(R.id.button2);
-        Buttongrey.setOnClickListener((View.OnClickListener)this);
-
-        Button Buttonsepia = (Button)findViewById(R.id.button3);
-        Buttonsepia.setOnClickListener((View.OnClickListener)this);
-
-        Button Buttoncolorize = (Button)findViewById(R.id.button4);
-        Buttoncolorize.setOnClickListener((View.OnClickListener)this);
-
-        Button Buttonrestart = (Button)findViewById(R.id.button5);
-        Buttonrestart.setOnClickListener((View.OnClickListener)this);
 
     }
 
@@ -50,37 +44,43 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
             ImageState.hideShowPicture(picture, sizePicture);
         }
 
+    }
 
-        if(ImageState.visibility==true){
-            if (view.getId() == R.id.button2) {
-                traitement.Greylevel();
-            }
-            if (view.getId() == R.id.button3){
-                traitement.Sepia();
-            }
-            if (view.getId() == R.id.button4){
-                traitement.Colorize();
-            }
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-            if (view.getId() == R.id.button5) {
-                traitement.picture.setImageBitmap(traitement.bitMapOriginal);
-                traitement.picture.setVisibility(View.VISIBLE);
-            }
-
+        switch (pos) {
+            case 0:
+                if(ImageState.visibility==true) {
+                    traitement.picture.setImageBitmap(traitement.bitMapOriginal);
+                    traitement.picture.setVisibility(View.VISIBLE);
+                }
+                break;
+            case 1:
+                if(ImageState.visibility==true){
+                    traitement.Greylevel();
+                }
+                break;
+            case 2:
+                if(ImageState.visibility==true) {
+                    traitement.Sepia();
+                }
+                break;
+            case 3:
+                if(ImageState.visibility==true) {
+                    traitement.Colorize();
+                }
+                break;
+            case 4:
+                if(ImageState.visibility==true) {
+                    traitement.Isolate();
+                }
+                break;
         }
-
     }
 
-    protected void onStart() {
-        super.onStart();
+    public void onNothingSelected(AdapterView<?> parent) {
+        traitement.picture.setImageBitmap(traitement.bitMapOriginal);
+        traitement.picture.setVisibility(View.VISIBLE);
     }
-
-    protected void onResume() {
-        super.onResume();
-    }
-
-    protected void onPause() {
-        super.onResume();
-    }
-
 }
+

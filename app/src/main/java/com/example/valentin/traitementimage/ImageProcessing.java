@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -105,4 +106,28 @@ public class ImageProcessing extends AppCompatActivity {
         picture.setImageBitmap(bitmapModifie);
     }
 
+    public void Isolate() {
+
+        int chosencolor = Color.RED;
+        int limit = 200;
+        valred = 0.3;
+        valgreen = 0.59;
+        valblue = 0.11;
+        int distance = 0;
+
+        pixelarray = new int[width * height];
+        bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
+
+        for(int i=0; i<pixelarray.length; i++){
+            distance = (int)( Math.sqrt(Math.pow( (Color.red(chosencolor) - Color.red(pixelarray[i])),2 ) + Math.pow( (Color.green(chosencolor) - Color.green(pixelarray[i])),2 ) +  Math.pow( (Color.blue(chosencolor) - Color.blue(pixelarray[i])),2 )));
+            if(distance >= limit) {
+                canalgrey = (int) ((Color.red(pixelarray[i]) * valred) + (Color.green(pixelarray[i]) * valgreen) + (Color.blue(pixelarray[i]) * valblue));
+                pixelarray[i] = Color.rgb(canalgrey, canalgrey, canalgrey);
+            }
+
+        }
+
+        bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
+        picture.setImageBitmap(bitmapModifie);
+    }
 }
