@@ -11,15 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.valentin.traitementimage.Main">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/couleur"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Afficher/Cacher"
         android:layout_width="wrap_content"
@@ -52,10 +43,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="11dp" />
-    <![CDATA[
 
-    />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/couleur"
+        android:id="@+id/imageView"
+        android:layout_marginBottom="55dp"
+        android:layout_above="@+id/spinner"
+        android:layout_centerHorizontal="true" />
 
-]]>
 </RelativeLayout>
 

@@ -130,4 +130,42 @@ public class ImageProcessing extends AppCompatActivity {
         bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
         picture.setImageBitmap(bitmapModifie);
     }
+
+    public void Increasecontrastgrey (){
+
+        valred = 0.3;
+        valgreen = 0.59;
+        valblue = 0.11;
+        int max = 0;
+        int min = 255;
+        int temp;
+
+        pixelarray = new int[width * height];
+        bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
+
+        for(int i=0; i<pixelarray.length; i++){
+            canalgrey = (int) ((Color.red(pixelarray[i]) * valred) + (Color.green(pixelarray[i]) * valgreen) + (Color.blue(pixelarray[i]) * valblue));
+            pixelarray[i] = Color.rgb(canalgrey, canalgrey, canalgrey);
+        }
+
+        for(int i=0; i<pixelarray.length; i++){
+            temp = Color.red(pixelarray[i]) ;
+            if(temp < min){
+                min = temp;
+            }
+            if(temp > max){
+                max = temp;
+            }
+        }
+
+        System.out.println(min+" "+max);
+
+        for(int i=0; i<pixelarray.length; i++){
+            temp = ((255*(Color.red(pixelarray[i])-min))/(max-min));
+            pixelarray[i] = Color.rgb(temp, temp, temp);
+        }
+
+        bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
+        picture.setImageBitmap(bitmapModifie);
+    }
 }
