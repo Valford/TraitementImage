@@ -9,7 +9,10 @@
         <item>Sepia</item>
         <item>Teinte Verte</item>
         <item>Isoler Rouge</item>
-        <item>Augmenter Contraste</item>
+        <item>Augmenter Contraste (gris)</item>
+        <item>Diminuer Contraste (gris)</item>
+        <item>Augmenter Contraste (couleur)</item>
+        <item>Effet de Surexposition</item>
     </string-array>
 
 </resources>

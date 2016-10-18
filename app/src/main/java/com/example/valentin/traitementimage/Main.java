@@ -80,6 +80,21 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
                     traitement.Increasecontrastgrey();
                 }
                 break;
+            case 6:
+                if(ImageState.visibility==true) {
+                    traitement.Decreasecontrastegrey();
+                }
+                break;
+            case 7:
+                if(ImageState.visibility==true) {
+                    traitement.Increasecontrastcolor();
+                }
+                break;
+            case 8:
+                if(ImageState.visibility==true) {
+                    traitement.Overexposure();
+                }
+                break;
         }
     }
 
