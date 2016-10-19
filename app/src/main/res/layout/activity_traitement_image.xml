@@ -11,47 +11,57 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.valentin.traitementimage.Main">
 
-    <Button
-        android:text="Afficher/Cacher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:layout_alignBaseline="@+id/textView"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:entries="@array/Traitements"
         android:prompt="@string/traitement_prompt"
-        android:layout_marginBottom="84dp"
-        android:layout_above="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
         android:id="@+id/textView"
-        android:layout_marginRight="18dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="86dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="11dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Afficher/Cacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/couleur"
+        app:srcCompat="@mipmap/imagepeucontrastee"
         android:id="@+id/imageView"
-        android:layout_marginBottom="55dp"
-        android:layout_above="@+id/spinner"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginLeft="83dp"
+        android:layout_marginStart="83dp" />
+
+    <Button
+        android:text="Photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="27dp"
+        android:layout_marginEnd="27dp"
+        android:id="@+id/buttonphoto" />
 
 </RelativeLayout>
 

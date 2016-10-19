@@ -17,6 +17,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
     ImageState pictureState;
     ImageProcessing traitement;
     Spinner spinner;
+    Camera camera;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,7 +36,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
 
         Button Buttonaff = (Button)findViewById(R.id.button);
         Buttonaff.setOnClickListener((View.OnClickListener)this);
-
+        Button Buttonphoto = (Button)findViewById(R.id.buttonphoto);
+        Buttonaff.setOnClickListener((View.OnClickListener)this);
     }
 
     public void onClick(View view) {
@@ -44,6 +46,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
             ImageState.hideShowPicture(picture, sizePicture);
         }
 
+        if(view.getId() == R.id.buttonphoto){
+            if ( !Camera.hasCamera())
+                Camera.capturePhoto();
+            else
+                return;
+        }
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
