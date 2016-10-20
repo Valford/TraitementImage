@@ -282,6 +282,7 @@ public class ImageProcessing extends AppCompatActivity {
 
         int hist[] = new int[256];
         int histcumul[] = new int [256];
+        int cumul=0;
 
         pixelarray = new int[width * height];
         bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
@@ -295,20 +296,60 @@ public class ImageProcessing extends AppCompatActivity {
             hist[Color.red(pixelarray[i])] = hist[Color.red(pixelarray[i])] + 1 ;
         }
 
-        histcumul[0]=hist[0];
-
-        for(int i=0; i<hist.length-1; i++){
-
-            histcumul[i+1]=hist[i+1]+histcumul[i];
+        for(int i=0; i<hist.length; i++){
+            cumul=cumul+hist[i];
+            histcumul[i]=histcumul[i]+cumul;
         }
 
         for(int i=0; i<pixelarray.length; i++){
-         //   pixelarray[i]=
+            canalgrey =(histcumul[Color.red(pixelarray[i])]*255)/(width*height);
+            pixelarray[i] = Color.rgb(canalgrey, canalgrey, canalgrey);
         }
+
+        bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
+        picture.setImageBitmap(bitmapModifie);
     }
 
     public void Histogramcolor (){
-        int hist[] = new int[256];
+
+        int histred[] = new int[256];
+        int histgreen[] = new int[256];
+        int histblue[] = new int[256];
+        int histcumulred[] = new int [256];
+        int histcumulgreen[] = new int [256];
+        int histcumulblue[] = new int [256];
+        int cumulred=0;
+        int cumulgreen=0;
+        int cumulblue=0;
+
+
+        pixelarray = new int[width * height];
+        bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
+
+        for(int i=0; i<pixelarray.length; i++){
+            histred[Color.red(pixelarray[i])] = histred[Color.red(pixelarray[i])] + 1 ;
+            histgreen[Color.red(pixelarray[i])] = histgreen[Color.red(pixelarray[i])] + 1 ;
+            histblue[Color.red(pixelarray[i])] = histblue[Color.red(pixelarray[i])] + 1 ;
+        }
+
+        for(int i=0; i<histred.length; i++){
+            cumulred=cumulred+histred[i];
+            histcumulred[i]=histcumulred[i]+cumulred;
+            cumulgreen=cumulgreen+histgreen[i];
+            histcumulgreen[i]=histcumulgreen[i]+cumulgreen;
+            cumulblue=cumulblue+histblue[i];
+            histcumulblue[i]=histcumulblue[i]+cumulblue;
+        }
+
+        for(int i=0; i<pixelarray.length; i++){
+            canalred = (histcumulred[Color.red(pixelarray[i])]*255)/(width*height);
+            canalgreen = (histcumulgreen[Color.green(pixelarray[i])]*255)/(width*height);
+            canalblue = (histcumulblue[Color.blue(pixelarray[i])]*255)/(width*height);
+            pixelarray[i] = Color.rgb(canalred, canalgreen, canalblue);
+        }
+
+        bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
+        picture.setImageBitmap(bitmapModifie);
     }
 
 }

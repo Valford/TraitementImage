@@ -20,7 +20,7 @@ public class ImageState extends AppCompatActivity {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         Resources res = context.getResources();
-        int id = R.mipmap.couleur;
+        int id = R.mipmap.paysage;
         BitmapFactory.decodeResource(res, id, options);
         trueheight = options.outHeight;
         truewidth = options.outWidth;

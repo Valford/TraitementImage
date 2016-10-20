@@ -13,6 +13,8 @@
         <item>Diminuer Contraste (gris)</item>
         <item>Augmenter Contraste (couleur)</item>
         <item>Effet de Surexposition</item>
+        <item>Egalisation histogramme (gris)</item>
+        <item>Egalisation histogramme (couleur)</item>
     </string-array>
 
 </resources>

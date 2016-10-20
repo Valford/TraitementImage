@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -57,53 +58,69 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-        switch (pos) {
-            case 0:
-                if(ImageState.visibility==true) {
-                    traitement.picture.setImageBitmap(traitement.bitMapOriginal);
-                    traitement.picture.setVisibility(View.VISIBLE);
-                }
-                break;
-            case 1:
-                if(ImageState.visibility==true){
-                    traitement.Greylevel();
-                }
-                break;
-            case 2:
-                if(ImageState.visibility==true) {
-                    traitement.Sepia();
-                }
-                break;
-            case 3:
-                if(ImageState.visibility==true) {
-                    traitement.Colorize();
-                }
-                break;
-            case 4:
-                if(ImageState.visibility==true) {
-                    traitement.Isolate();
-                }
-                break;
-            case 5:
-                if(ImageState.visibility==true) {
-                    traitement.Increasecontrastgrey();
-                }
-                break;
-            case 6:
-                if(ImageState.visibility==true) {
-                    traitement.Decreasecontrastegrey();
-                }
-                break;
-            case 7:
-                if(ImageState.visibility==true) {
-                    traitement.Increasecontrastcolor();
-                }
-                break;
-            case 8:
-                if(ImageState.visibility==true) {
-                    traitement.Overexposure();
-                }
-                break;
+        if(ImageState.visibility==true){
+            switch (pos) {
+                case 0:
+                    if(ImageState.visibility==true) {
+                        traitement.picture.setImageBitmap(traitement.bitMapOriginal);
+                        traitement.picture.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case 1:
+                    if(ImageState.visibility==true){
+                        traitement.Greylevel();
+                    }
+                    break;
+                case 2:
+                    if(ImageState.visibility==true) {
+                        traitement.Sepia();
+                    }
+                    break;
+                case 3:
+                    if(ImageState.visibility==true) {
+                        traitement.Colorize();
+                    }
+                    break;
+                case 4:
+                    if(ImageState.visibility==true) {
+                        traitement.Isolate();
+                    }
+                    break;
+                case 5:
+                    if(ImageState.visibility==true) {
+                        traitement.Increasecontrastgrey();
+                    }
+                    break;
+                case 6:
+                    if(ImageState.visibility==true) {
+                        traitement.Decreasecontrastegrey();
+                    }
+                    break;
+                case 7:
+                    if(ImageState.visibility==true) {
+                        traitement.Increasecontrastcolor();
+                    }
+                    break;
+                case 8:
+                    if(ImageState.visibility==true) {
+                        traitement.Overexposure();
+                    }
+                    break;
+                case 9:
+                    if(ImageState.visibility==true) {
+                        traitement.Histogramgrey();
+                    }
+                    break;
+                case 10:
+                    if(ImageState.visibility==true) {
+                        traitement.Histogramcolor();
+                    }
+                    break;
+            }
+        }
+
+        else{
+            Toast.makeText(getApplicationContext(), "Image non affichée", Toast.LENGTH_SHORT).show();
         }
     }
 
