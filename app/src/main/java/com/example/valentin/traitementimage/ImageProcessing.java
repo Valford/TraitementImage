@@ -278,4 +278,37 @@ public class ImageProcessing extends AppCompatActivity {
 
     }
 
+    public void Histogramgrey (){
+
+        int hist[] = new int[256];
+        int histcumul[] = new int [256];
+
+        pixelarray = new int[width * height];
+        bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
+
+        for(int i=0; i<pixelarray.length; i++){
+            canalgrey = (int) ((Color.red(pixelarray[i]) * valred) + (Color.green(pixelarray[i]) * valgreen) + (Color.blue(pixelarray[i]) * valblue));
+            pixelarray[i] = Color.rgb(canalgrey, canalgrey, canalgrey);
+        }
+
+        for(int i=0; i<pixelarray.length; i++){
+            hist[Color.red(pixelarray[i])] = hist[Color.red(pixelarray[i])] + 1 ;
+        }
+
+        histcumul[0]=hist[0];
+
+        for(int i=0; i<hist.length-1; i++){
+
+            histcumul[i+1]=hist[i+1]+histcumul[i];
+        }
+
+        for(int i=0; i<pixelarray.length; i++){
+         //   pixelarray[i]=
+        }
+    }
+
+    public void Histogramcolor (){
+        int hist[] = new int[256];
+    }
+
 }

@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
  */
 
 public class Histogramme {
-    int hist[] = new int[256];
 
 
 }

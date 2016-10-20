@@ -31,6 +31,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
         this.pictureState = new ImageState(this);
         ImageState.hideShowPicture(picture, sizePicture);
         spinner = (Spinner) findViewById(R.id.spinner);
+        this.camera= new Camera(this.picture);
 
         spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
@@ -46,12 +47,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
             ImageState.hideShowPicture(picture, sizePicture);
         }
 
-        if(view.getId() == R.id.buttonphoto){
+      /*  if(view.getId() == R.id.buttonphoto){
             if ( !Camera.hasCamera())
                 Camera.capturePhoto();
             else
                 return;
-        }
+        }*/
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
