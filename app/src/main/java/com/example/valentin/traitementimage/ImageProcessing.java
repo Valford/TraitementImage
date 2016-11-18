@@ -26,6 +26,7 @@ public class ImageProcessing extends AppCompatActivity {
     int canalblue;
     int canalgrey;
     int pixelarray[];
+    int pixelarraytext[];
 
     public ImageProcessing(ImageView picture){
 
@@ -350,6 +351,25 @@ public class ImageProcessing extends AppCompatActivity {
 
         bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
         picture.setImageBitmap(bitmapModifie);
-    }
+        }
 
+            public void integrertext (Bitmap picturetext, int widthtext, int heighttext){
+
+                int moyred, moygreen, moyblue;
+                pixelarray = new int[width * height];
+                bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
+                pixelarraytext = new int[widthtext * heighttext];
+
+                for(int i=0; i<pixelarray.length; i++){
+                    for(int j=0; j<pixelarraytext.length; j++){
+                        if(pixelarraytext[i]!=Color.WHITE){
+                            moyred=(Color.red(pixelarray[i])+Color.red(pixelarraytext[i]))/2;
+                            moygreen=(Color.green(pixelarray[i])+Color.green(pixelarraytext[i]))/2;
+                            moyblue=(Color.blue(pixelarray[i])+Color.blue(pixelarraytext[i]))/2;
+                            
+                        }
+
+                    }
+                }
+        }
 }
