@@ -8,22 +8,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ImageState extends AppCompatActivity {
+public class ImageState {
 
+    static Resources res;
     static TextView pictureSize;
     static boolean visibility = true;
     static int truewidth;
     static int trueheight;
 
-    public ImageState(Context context){
+    public ImageState(Resources res){
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        Resources res = context.getResources();
-        int id = R.mipmap.paysage;
-        BitmapFactory.decodeResource(res, id, options);
-        trueheight = options.outHeight;
-        truewidth = options.outWidth;
+        this.res = res;
 
     }
 
@@ -40,6 +37,10 @@ public class ImageState extends AppCompatActivity {
             visibility=false;
             pictureSize.setText("-");
         }
+    }
+
+    public static Resources getRessources(){
+        return res;
     }
 
 }

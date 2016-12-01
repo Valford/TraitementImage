@@ -1,6 +1,7 @@
 package com.example.valentin.traitementimage;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
@@ -11,7 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class ImageProcessing extends AppCompatActivity {
+public class ImageProcessing {
 
     ImageView picture;
     Bitmap bitMapOriginal;
@@ -353,7 +354,11 @@ public class ImageProcessing extends AppCompatActivity {
         picture.setImageBitmap(bitmapModifie);
         }
 
-            public void integrertext (Bitmap picturetext, int widthtext, int heighttext){
+            public void integrertext (){
+
+                Bitmap bitmapText = BitmapFactory.decodeResource(ImageState.getRessources(), R.mipmap.texte);
+                int widthtext = bitmapText.getWidth();
+                int heighttext = bitmapText.getHeight();
 
                 int moyred, moygreen, moyblue;
                 pixelarray = new int[width * height];
@@ -366,10 +371,12 @@ public class ImageProcessing extends AppCompatActivity {
                             moyred=(Color.red(pixelarray[i])+Color.red(pixelarraytext[i]))/2;
                             moygreen=(Color.green(pixelarray[i])+Color.green(pixelarraytext[i]))/2;
                             moyblue=(Color.blue(pixelarray[i])+Color.blue(pixelarraytext[i]))/2;
-                            
+                            pixelarray[i]=Color.rgb(moyred, moygreen, moyblue);
                         }
-
                     }
                 }
+
+                bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
+                picture.setImageBitmap(bitmapModifie);
         }
 }

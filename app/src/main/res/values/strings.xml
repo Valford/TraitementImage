@@ -15,6 +15,7 @@
         <item>Effet de Surexposition</item>
         <item>Egalisation histogramme (gris)</item>
         <item>Egalisation histogramme (couleur)</item>
+        <item>Integrer Texte</item>
     </string-array>
 
 </resources>

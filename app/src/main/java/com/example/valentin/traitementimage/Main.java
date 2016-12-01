@@ -29,7 +29,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
         this.sizePicture = (TextView) findViewById(R.id.textView);
         this.picture = (ImageView) findViewById(R.id.imageView);
         this.traitement = new ImageProcessing(this.picture);
-        this.pictureState = new ImageState(this);
+        this.pictureState = new ImageState(getResources());
         ImageState.hideShowPicture(picture, sizePicture);
         spinner = (Spinner) findViewById(R.id.spinner);
         this.camera= new Camera(this.picture);
@@ -116,6 +116,10 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
                         traitement.Histogramcolor();
                     }
                     break;
+                case 11:
+                    if(ImageState.visibility==true) {
+                        traitement.integrertext();
+                    }
             }
         }
 
