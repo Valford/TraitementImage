@@ -354,29 +354,29 @@ public class ImageProcessing {
         picture.setImageBitmap(bitmapModifie);
         }
 
-            public void integrertext (){
+    public void integrertext (){
 
-                Bitmap bitmapText = BitmapFactory.decodeResource(ImageState.getRessources(), R.mipmap.texte);
-                int widthtext = bitmapText.getWidth();
-                int heighttext = bitmapText.getHeight();
+        Bitmap bitmapText = BitmapFactory.decodeResource(ImageState.getRessources(), R.mipmap.texte);
+        int widthtext = bitmapText.getWidth();
+        int heighttext = bitmapText.getHeight();
 
-                int moyred, moygreen, moyblue;
-                pixelarray = new int[width * height];
-                bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
-                pixelarraytext = new int[widthtext * heighttext];
+        int moyred, moygreen, moyblue;
+        pixelarray = new int[width * height];
+        bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
+        pixelarraytext = new int[widthtext * heighttext];
 
-                for(int i=0; i<pixelarray.length; i++){
-                    for(int j=0; j<pixelarraytext.length; j++){
-                        if(pixelarraytext[i]!=Color.WHITE){
-                            moyred=(Color.red(pixelarray[i])+Color.red(pixelarraytext[i]))/2;
-                            moygreen=(Color.green(pixelarray[i])+Color.green(pixelarraytext[i]))/2;
-                            moyblue=(Color.blue(pixelarray[i])+Color.blue(pixelarraytext[i]))/2;
-                            pixelarray[i]=Color.rgb(moyred, moygreen, moyblue);
-                        }
-                    }
+        for(int i=0; i<pixelarray.length; i++){
+            for(int j=0; j<pixelarraytext.length; j++){
+                if(pixelarraytext[i]!=Color.WHITE){
+                    moyred=(Color.red(pixelarray[i])+Color.red(pixelarraytext[j]))/2;
+                    moygreen=(Color.green(pixelarray[i])+Color.green(pixelarraytext[j]))/2;
+                    moyblue=(Color.blue(pixelarray[i])+Color.blue(pixelarraytext[j]))/2;
+                    pixelarray[i]=Color.rgb(moyred, moygreen, moyblue);
                 }
-
-                bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
-                picture.setImageBitmap(bitmapModifie);
+            }
         }
+
+        bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
+        picture.setImageBitmap(bitmapModifie);
+    }
 }
