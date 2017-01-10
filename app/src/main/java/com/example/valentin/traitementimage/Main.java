@@ -44,11 +44,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
 
     public void onClick(View view) {
 
-        if (view.getId() == R.id.button) {
+        if (view.getId() == R.id.button) { //affiche l'image si on clique sur le bouton
             ImageState.hideShowPicture(picture, sizePicture);
         }
 
-      /*  if(view.getId() == R.id.buttonphoto){
+      /*  if(view.getId() == R.id.buttonphoto){ //utiliser caméra
             if ( !Camera.hasCamera())
                 Camera.capturePhoto();
             else
@@ -58,7 +58,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-        if(ImageState.visibility==true){
+        if(ImageState.visibility==true){    //si l'image est affichée, on lance la fonction de traitement en fonction du menu choisi
             switch (pos) {
                 case 0:
                     if(ImageState.visibility==true) {
@@ -123,7 +123,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Ada
             }
         }
 
-        else{
+        else{   //si on choisit un traitement mais que l'image n'est pas afficher on affiche un message d'erreur
             Toast.makeText(getApplicationContext(), "Image non affichée", Toast.LENGTH_SHORT).show();
         }
     }

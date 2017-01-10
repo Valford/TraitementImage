@@ -48,15 +48,15 @@ public class ImageProcessing {
         valgreen = 0.59;
         valblue = 0.11;
 
-        pixelarray = new int[width * height];
-        bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height);
+        pixelarray = new int[width * height]; //création d'un tableau pour stocker les pixels, de la dimension de l'image d'origine.
+        bitMapOriginal.getPixels(pixelarray, 0, width, 0, 0, width, height); //on récupère dans le pixel array les valeurs des pixels de l'image d'origine.
 
         for(int i=0; i<pixelarray.length; i++){
             canalgrey = (int) ((Color.red(pixelarray[i]) * valred) + (Color.green(pixelarray[i]) * valgreen) + (Color.blue(pixelarray[i]) * valblue));
             pixelarray[i] = Color.rgb(canalgrey, canalgrey, canalgrey);
         }
 
-        bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height);
+        bitmapModifie.setPixels(pixelarray, 0, width, 0, 0, width, height); //on rentre dans le nouveau bitmap le tableau de pixels modifié.
         picture.setImageBitmap(this.bitmapModifie);
     }
 
