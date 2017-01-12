@@ -12,7 +12,7 @@ public class ImageState {
 
     static Resources res;
     static TextView pictureSize;
-    static boolean visibility = true;
+    static boolean visibility = false;
     static int truewidth;
     static int trueheight;
 
@@ -21,7 +21,10 @@ public class ImageState {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         this.res = res;
-
+        int id = R.mipmap.paysage;
+        BitmapFactory.decodeResource(res, id, options);
+        trueheight = options.outHeight;
+        truewidth = options.outWidth;
     }
 
     public static void hideShowPicture(ImageView picture, TextView pictureSize){
